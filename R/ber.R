@@ -198,3 +198,60 @@ geom_event <- function(start,
     
   )
 }
+
+#' Add Reference Line and Label to ggplot2 Plots
+#'
+#' \code{geom_reference} provides a convenient way to add a horizontal reference line 
+#' to a ggplot2 plot with an associated label. The label is positioned at the maximum 
+#' date value on the x-axis.
+#'
+#' @param xdate The date where the label should be.
+#' @param label Label to annotate the reference line.
+#' @param yintercept Y-coordinate at which the reference line should be plotted.
+#' @param label_color Color of the label and reference line. Defaults to "#002E60".
+#' @param label_size Size of the label text. Defaults to 3.
+#' @param lty Line type for the reference line. Defaults to 2.
+#' @param hjust Horizontal justification of the label. Defaults to 0.5.
+#' @param angle Angle at which the label text is to be displayed. Defaults to 90.
+#' @param vjust Vertical justification of the label. Defaults to -1.
+#'
+#' @return A custom ggplot2 layer that adds a reference line at the specified yintercept 
+#'         and a label at the maximum x (date) value.
+#'
+#' @examples
+#' \dontrun{
+#' library(ggplot2)
+#' data <- data.frame(Date = as.Date('2020-01-01') + 0:364, Value = rnorm(365))
+#' ggplot(data, aes(x = Date, y = Value)) +
+#'   geom_line() +
+#'   geom_reference(yintercept = 0, label = "Reference")
+#' }
+#'
+#' @seealso \code{\link[ggplot2]{geom_hline}}, \code{\link[ggplot2]{annotate}} for the underlying functions.
+#'
+#' @export
+geom_reference <- function(
+                       xdate,
+                       yintercept,
+                       label = "",
+                       label_color = "#002E60",
+                       label_size = 3,
+                       lty = 2,
+                       hjust = 0.5,
+                       angle = 90,
+                       vjust = -1) {
+  
+  list(
+    
+    geom_hline(yintercept = yintercept,  # Add for reference line
+               lty = lty,
+               color = label_color),
+      annotate("text", x = xdate, y = yintercept, label = label, 
+               hjust = hjust,
+               angle = angle,
+               vjust = vjust,
+               color = label_color, 
+               size = label_size)
+    
+  )
+}

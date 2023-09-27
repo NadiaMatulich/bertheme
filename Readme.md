@@ -58,7 +58,7 @@ remotes::install_github("Bureau-for-Economic-Research/bertheme")
 packageVersion("bertheme")
 ```
 
-    [1] '0.1.0'
+    [1] '0.1.1'
 
 ### Line Chart
 
@@ -85,13 +85,42 @@ p +
     caption = "Source: Quaterly Bulletin, South Africa Reserve Bank, 2016"
   ) +
   guides(linetype = "none")+
-  geom_event(start = "2008-01-01", end = "2009-01-01", 
+  geom_event(start = "2008-01-01", end = "2009-01-01", # Add for event highlight
              label = "", 
              alpha = 0.1) + 
   theme_ber() 
 ```
 
 ![](man/figures/line_chart-1.png)<!-- -->
+
+### Line Chart with Reference
+
+``` r
+p + 
+  scale_colour_ber("core") +
+  scale_y_continuous(labels = comma) +
+  labs(
+    title = "Main Title",
+    subtitle = "Source: South Africa Reserve Bank",
+    y = "Numbers (#)",
+    x = "",
+    caption = "Source: Quaterly Bulletin, South Africa Reserve Bank, 2016"
+  ) +
+  guides(linetype = "none") +
+  geom_reference(xdate = as.Date('2015-04-01'), # Add to add a reference line
+                 yintercept = 17.6, 
+                 label = "Average\nUnemployed", 
+                 angle = 0, 
+                 hjust = 0.75,
+                 vjust = 0.5,
+                 label_color = "black") +
+  geom_event(start = "2008-01-01", end = "2009-01-01", 
+             label = "", 
+             alpha = 0.1) + 
+  theme_ber() 
+```
+
+![](man/figures/line_chart_reference-1.png)<!-- -->
 
 ### Mixed Chart
 

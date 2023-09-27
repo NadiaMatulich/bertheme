@@ -3,6 +3,7 @@
 export(ber_pal)
 export(bertheme_data)
 export(geom_event)
+export(geom_reference)
 export(scale_color_ber)
 export(scale_colour_ber)
 export(scale_fill_ber)
