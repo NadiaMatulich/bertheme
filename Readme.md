@@ -230,6 +230,103 @@ data %>%
 
 ![](man/figures/unnamed-chunk-5-1.png)<!-- -->
 
+### Slope Chart
+
+``` r
+# Loading required packages
+library(tidyverse)
+```
+
+    ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
+
+    ✔ tibble  3.2.1     ✔ purrr   1.0.1
+    ✔ tidyr   1.3.0     ✔ stringr 1.5.0
+    ✔ readr   2.0.2     ✔ forcats 0.5.1
+
+    ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+    ✖ readr::col_factor() masks scales::col_factor()
+    ✖ purrr::discard()    masks scales::discard()
+    ✖ dplyr::filter()     masks stats::filter()
+    ✖ dplyr::lag()        masks stats::lag()
+
+``` r
+library(ggrepel)
+library(bertheme)
+
+# Loading data
+df <- read_csv("https://raw.githubusercontent.com/GDS-ODSSS/unhcr-dataviz-platform/master/data/change_over_time/slope.csv")
+```
+
+    Rows: 22 Columns: 3
+
+    ── Column specification ────────────────────────────────────────────────────────
+    Delimiter: ","
+    chr (1): country_origin
+    dbl (2): year, refugee_number
+
+    ℹ Use `spec()` to retrieve the full column specification for this data.
+    ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+``` r
+# Plot
+ggplot(df, aes(
+  x = year,
+  y = refugee_number,
+  group = country_origin
+)) +
+  geom_line(
+    linewidth = 0.75,
+    color = bertheme_data()$core[1]
+  ) +
+  geom_text_repel(
+    data = df |> filter(year == 2016),
+    aes(label = paste(
+      country_origin,
+      if_else(refugee_number > 1e6,
+              paste0(round(refugee_number / 1e6, 1), "M"),
+              paste0(round(refugee_number / 1e3, 1), "k")
+      )
+    )),
+    size = 8 / .pt,
+    hjust = 1,
+    direction = "y",
+    nudge_x = -0.3
+  ) +
+  geom_text_repel(
+    data = df |> filter(year == 2021),
+    aes(label = paste(
+      country_origin,
+      if_else(refugee_number > 1e6,
+              paste0(round(refugee_number / 1e6, 1), "M"),
+              paste0(round(refugee_number / 1e3, 1), "k")
+      )
+    )),
+    size = 8 / .pt,
+    hjust = 0,
+    direction = "y",
+    nudge_x = 0.3
+  ) +
+  geom_point(
+    size = 2.5,
+    color = bertheme_data()$core[2]
+  ) +
+  labs(
+    title = "Evolution of refugee population in East and\nHorn of Africa region | 2016 vs 2021",
+    caption = "Source: UNHCR Refugee Data Finder\n© UNHCR, The UN Refugee Agency"
+  ) +
+  scale_x_continuous(
+    breaks = c(2016, 2021),
+    limits = c(2013, 2024)
+  ) +
+  scale_y_continuous(limits = c(-2e5, NA)) +
+  theme_void() +
+  theme(panel.grid.major.x = element_line(colour = "grey", linewidth = 1), 
+        axis.text.x = element_text(face = "bold", color="grey", 
+                                   size = 14))
+```
+
+![](man/figures/unnamed-chunk-6-1.png)<!-- -->
+
 ## Demo Plots
 
 ### Core
@@ -240,46 +337,46 @@ library(colorspace)
 demoplot(bertheme_data()[['core']], type = "lines")
 ```
 
-![](man/figures/unnamed-chunk-6-1.png)<!-- -->
+![](man/figures/unnamed-chunk-7-1.png)<!-- -->
 
 ``` r
 demoplot(bertheme_data()[['core']], type = "mosaic")
 ```
 
-![](man/figures/unnamed-chunk-6-2.png)<!-- -->
+![](man/figures/unnamed-chunk-7-2.png)<!-- -->
 
 ``` r
 demoplot(bertheme_data()[['core']], type = "map")
 ```
 
-![](man/figures/unnamed-chunk-6-3.png)<!-- -->
+![](man/figures/unnamed-chunk-7-3.png)<!-- -->
 
 ``` r
 demoplot(bertheme_data()[['core']], type = "scatter")
 ```
 
-![](man/figures/unnamed-chunk-6-4.png)<!-- -->
+![](man/figures/unnamed-chunk-7-4.png)<!-- -->
 
 ``` r
 demoplot(bertheme_data()[['core']], type = "perspective")
 ```
 
-![](man/figures/unnamed-chunk-6-5.png)<!-- -->
+![](man/figures/unnamed-chunk-7-5.png)<!-- -->
 
 ``` r
 demoplot(bertheme_data()[['core']], type = "spine")
 ```
 
-![](man/figures/unnamed-chunk-6-6.png)<!-- -->
+![](man/figures/unnamed-chunk-7-6.png)<!-- -->
 
 ``` r
 demoplot(bertheme_data()[['core']], type = "heatmap")
 ```
 
-![](man/figures/unnamed-chunk-6-7.png)<!-- -->
+![](man/figures/unnamed-chunk-7-7.png)<!-- -->
 
 ``` r
 demoplot(bertheme_data()[['core']], type = "pie")
 ```
 
-![](man/figures/unnamed-chunk-6-8.png)<!-- -->
+![](man/figures/unnamed-chunk-7-8.png)<!-- -->
