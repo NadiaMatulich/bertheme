@@ -17,6 +17,15 @@ bertheme_data <- function(){
     "#b79962" #gold
   )
   
+  bertheme_palette$core_divergent <-
+    c("#002e60",
+      "#6194dd",
+      "#d5dcdb",
+      "#ffffe0",
+      "#fed3a0",
+      "#FF790F",
+      "#61223b")
+  
   
   bertheme_palette$darks <- c(
     "#002E5F",
@@ -26,8 +35,6 @@ bertheme_data <- function(){
     "#FF790F",
     "#61223B"
   )
-  
-  
   
   bertheme_palette$blue_and_gold <- c(
     "#0F76FF",

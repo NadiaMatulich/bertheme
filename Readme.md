@@ -52,6 +52,11 @@ remotes::install_github("Bureau-for-Economic-Research/bertheme")
 
 ![](man/figures/unnamed-chunk-2-6.png)<!-- -->
 
+
+    [[7]]
+
+![](man/figures/unnamed-chunk-2-7.png)<!-- -->
+
 ## Usage
 
 ``` r

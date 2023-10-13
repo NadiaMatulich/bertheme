@@ -43,9 +43,7 @@ This theme should be used with \code{\link{scale_color_ber}()} and \code{\link{s
 }
 \section{Usage}{
 
-To use \code{theme_ber}, simply add it to your ggplot2 plot chain. For instance:
-
-\if{html}{\out{<div class="sourceCode R">}}\preformatted{ggplot(data, aes(x, y)) + 
+To use \code{theme_ber}, simply add it to your ggplot2 plot chain. For instance:\if{html}{\out{<div class="sourceCode R">}}\preformatted{ggplot(data, aes(x, y)) + 
   geom_point() + 
   theme_ber()
 }\if{html}{\out{</div>}}
