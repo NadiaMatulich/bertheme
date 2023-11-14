@@ -47,10 +47,10 @@ theme_ber <- function(base_size = 12,
                       base_family = "sans",
                       title_size = 14,
                       title_family = "Helvetica",
-                      subtitle_size = 12,
+                      subtitle_size = 10,
                       caption_size = 12, 
-                      subtitle_color = "#FF790F",
-                      title_color = "#0154C3"
+                      subtitle_color = "#595959",
+                      title_color = "black"
                       ) {
   
   theme_foundation(base_size = base_size, base_family = base_family) +
@@ -80,7 +80,8 @@ theme_ber <- function(base_size = 12,
       legend.box = "horizontal",
       legend.box.just = "center", 
       strip.background = element_rect(fill = "white"), #this is for when you do facet_rep_wrap or facet_wrap
-      strip.text = element_text(colour = "#002b60"),
+      strip.text = element_text(colour = "#002b60", 
+                                size = base_size),
       plot.title = element_text(size = title_size, color = title_color, face = "bold"),
       plot.subtitle = element_text(size = subtitle_size, face = "bold", color = subtitle_color), 
       plot.caption = element_text(size = caption_size, color = "darkgrey")

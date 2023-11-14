@@ -80,11 +80,12 @@ p +
   scale_y_continuous(labels = comma) +
   labs(
     title = "Main Title",
-    subtitle = "Source: South Africa Reserve Bank",
-    y = "Numbers (#)",
+    subtitle = "Growth Y-o-Y (%)",
+    y = "",
     x = "",
     caption = "Source: Quaterly Bulletin, South Africa Reserve Bank, 2016"
   ) +
+  scale_x_date(date_labels = "%Y-%m-%d") + 
   guides(linetype = "none")+
   geom_event(start = "2008-01-01", end = "2009-01-01", # Add for event highlight
              label = "", 
@@ -102,8 +103,8 @@ p +
   scale_y_continuous(labels = comma) +
   labs(
     title = "Main Title",
-    subtitle = "Source: South Africa Reserve Bank",
-    y = "Numbers (#)",
+    subtitle = "Growth Y-o-Y (%)",
+    y = "",
     x = "",
     caption = "Source: Quaterly Bulletin, South Africa Reserve Bank, 2016"
   ) +
@@ -138,7 +139,8 @@ p +
   scale_y_continuous(labels = comma) +
   labs(
     title = "Main Title",
-    y = "Numbers (#)",
+    subtitle = "Growth Y-o-Y (%)",
+    y = "",
     x = "",
     caption = "Source: Quaterly Bulletin, South Africa Reserve Bank, 2016"
   ) +
@@ -194,6 +196,7 @@ ggplot(data, aes(fill = condition, y = value, x = specie)) +
     scale_fill_ber(palette = "core") +
     theme_ber() +
     labs(
+      subtitle = "Growth Y-o-Y (%)",
       y = "",
       x = "", 
       title = "This is main heading")
@@ -216,6 +219,7 @@ data %>%
     theme_ber() +
     labs(
       fill = "", 
+      subtitle = "Growth Y-o-Y (%)",
       y = "", 
       x = "")
 ```
